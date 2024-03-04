@@ -1,5 +1,6 @@
 /* USER CODE BEGIN Header */
 /**
+/*Alunos: Jenifer e Bruno.
   ******************************************************************************
   * @file           : main.c
   * @brief          : Main program body
