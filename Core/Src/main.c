@@ -1,5 +1,6 @@
 /* USER CODE BEGIN Header */
 /**
+/* Alunos: Jenifer Pereira e Bruno Moreira.
   ******************************************************************************
   * @file           : main.c
   * @brief          : Main program body
