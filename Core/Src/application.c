@@ -36,7 +36,7 @@ void AppSendTaskCode(void *argument)
     osStatus_t status;
     while (1)
     {
-        LoRaWaitDutyCycle();
+        //LoRaWaitDutyCycle();
         //write code to read from sensors and send via LoRaWAN
 
         
