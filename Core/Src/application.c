@@ -2,6 +2,7 @@
 #include "stm32f4xx_hal.h"
 #include "radioenge_modem.h"
 #include "uartRingBufDMA.h"
+#include "main.h"
 
 extern osTimerId_t PeriodicSendTimerHandle;
 extern osThreadId_t AppSendTaskHandle;
@@ -35,11 +36,15 @@ void AppSendTaskCode(void *argument)
     osStatus_t status;
     while (1)
     {
+        LoRaWaitDutyCycle();
+        //write code to read from sensors and send via LoRaWAN
+
+        
         status = osMessageQueueGet(TemperatureQueueHandle, &temp_oCx100,
                                    NULL, osWaitForever); // wait for message
         if (status == osOK)
         {
-            sprintf(msg, "Temperature: %d.%d oC\n", temp_oCx100 / 100,
+            sprintf(msg, "Temperature: %d.%d oC\r\n", temp_oCx100 / 100,
                     temp_oCx100 % 100);
             SendToUART(msg, strlen(msg));
         }

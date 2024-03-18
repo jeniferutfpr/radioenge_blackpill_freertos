@@ -127,7 +127,7 @@ const osThreadAttr_t AppSendTask_attributes = {
   .cb_size = sizeof(SendTemperatureControlBlock),
   .stack_mem = &SendTemperatureBuffer[0],
   .stack_size = sizeof(SendTemperatureBuffer),
-  .priority = (osPriority_t) osPriorityLow7,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for ReadFromADCTask */
 osThreadId_t ReadFromADCTaskHandle;
@@ -139,7 +139,7 @@ const osThreadAttr_t ReadFromADCTask_attributes = {
   .cb_size = sizeof(ReadFromADCTaskControlBlock),
   .stack_mem = &ReadFromADCTaskBuffer[0],
   .stack_size = sizeof(ReadFromADCTaskBuffer),
-  .priority = (osPriority_t) osPriorityLow,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for uartQueue */
 osMessageQueueId_t uartQueueHandle;
