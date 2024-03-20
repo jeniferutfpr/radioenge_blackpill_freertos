@@ -290,6 +290,7 @@ const volatile int uxTopUsedPriority = configMAX_PRIORITIES - 1; //this declarat
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
   uint32_t i;  
   (void)uxTopUsedPriority; //this declaration enables thread awareness for FreeRTOS using OpenOCD
@@ -335,22 +336,27 @@ int main(void)
 
   /* Create the semaphores(s) */
   /* creation of ATCommandSemaphore */
-  ATCommandSemaphoreHandle = osSemaphoreNew(1, 1, &ATCommandSemaphore_attributes);
+  ATCommandSemaphoreHandle = osSemaphoreNew(1, 0, &ATCommandSemaphore_attributes);
 
   /* creation of ATResponseSemaphore */
-  ATResponseSemaphoreHandle = osSemaphoreNew(1, 1, &ATResponseSemaphore_attributes);
+  ATResponseSemaphoreHandle = osSemaphoreNew(1, 0, &ATResponseSemaphore_attributes);
 
   /* creation of UARTTXSemaphore */
-  UARTTXSemaphoreHandle = osSemaphoreNew(1, 1, &UARTTXSemaphore_attributes);
+  UARTTXSemaphoreHandle = osSemaphoreNew(1, 0, &UARTTXSemaphore_attributes);
 
   /* creation of RadioStateSemaphore */
-  RadioStateSemaphoreHandle = osSemaphoreNew(1, 1, &RadioStateSemaphore_attributes);
+  RadioStateSemaphoreHandle = osSemaphoreNew(1, 0, &RadioStateSemaphore_attributes);
 
   /* creation of LoRaTXSemaphore */
-  LoRaTXSemaphoreHandle = osSemaphoreNew(1, 1, &LoRaTXSemaphore_attributes);
+  LoRaTXSemaphoreHandle = osSemaphoreNew(1, 0, &LoRaTXSemaphore_attributes);
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
+  osSemaphoreRelease(ATCommandSemaphoreHandle);
+  osSemaphoreRelease(ATResponseSemaphoreHandle);
+  osSemaphoreRelease(UARTTXSemaphoreHandle);
+  osSemaphoreRelease(RadioStateSemaphoreHandle);
+  osSemaphoreRelease(LoRaTXSemaphoreHandle);
   /* USER CODE END RTOS_SEMAPHORES */
 
   /* Create the timer(s) */
@@ -414,7 +420,9 @@ int main(void)
 
   /* Start scheduler */
   osKernelStart();
+
   /* We should never get here as control is now taken by the scheduler */
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
