@@ -315,6 +315,7 @@ const volatile int uxTopUsedPriority = configMAX_PRIORITIES - 1; //this declarat
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
   uint32_t i;  
   (void)uxTopUsedPriority; //this declaration enables thread awareness for FreeRTOS using OpenOCD
@@ -376,6 +377,11 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
+  osSemaphoreRelease(ATCommandSemaphoreHandle);
+  osSemaphoreRelease(ATResponseSemaphoreHandle);
+  osSemaphoreRelease(UARTTXSemaphoreHandle);
+  osSemaphoreRelease(RadioStateSemaphoreHandle);
+  osSemaphoreRelease(LoRaTXSemaphoreHandle);
   /* USER CODE END RTOS_SEMAPHORES */
 
   /* Create the timer(s) */
@@ -447,6 +453,7 @@ int main(void)
   osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
